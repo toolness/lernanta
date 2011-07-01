@@ -48,6 +48,10 @@
         <a href="{{ organizer.get_absolute_url }}" title="{{ organizer.display_name }} (school organizer)"><img class="member-picture" src="{{ organizer.image_or_default }}" height="26" width="26" alt="{{ organizer.display_name }} (school organizer)"></a>
       {% endfor %}
     </section>
+    
+    <section id="social-media-buttons">
+      <g:plusone size="small"></g:plusone>
+    </section>
   </div>
   <h1 class="school_header"><b>{{ school.name }}</b></h1>
   {{ school.description|youtube|slideshare|safe }}

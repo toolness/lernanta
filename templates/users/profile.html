@@ -58,13 +58,16 @@
 	  {{ profile.bio|nofollow|safe }}
 	</div>
 	
-	{% if profile.location %}
+  {% if profile.location %}
   <dl class="member-location">
   <dt>{{ _('Location:') }}</dt> 
   <dd class="adr">{{ profile.location }}</dd>
   </dl>
   {% endif %}
   
+  <div id="social-media-buttons">
+    <g:plusone size="small"></g:plusone>
+  </div>
   {% if skills %}
   <ul class="tags skills">
     {% for skill in skills %}

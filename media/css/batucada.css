@@ -670,6 +670,10 @@ header {}
       float: right;
   }
 
+  #school_home #sidebar #social-media-buttons {
+  	padding-top: 13px;
+  	clear: left;
+  }
   	#sidebar h2{
 		font-size: 18px;
 		line-height: 1;

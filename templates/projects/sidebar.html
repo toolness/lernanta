@@ -40,6 +40,11 @@
     <div id="project-summary">
       {{ project.long_description|safe }}
     </div>
+    
+    <div id="social-media-buttons">
+      <g:plusone size="small"></g:plusone>
+    </div>
+    
     {% if organizing %}
       <a class="button" href="{% locale_url projects_edit slug=project.slug %}">{{ _('Edit') }}</a>
     {% endif %}
