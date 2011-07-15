@@ -138,7 +138,6 @@ INSTALLED_APPS = (
     'django_push.subscriber',
     'djcelery',
     'django_openid_auth',
-    'ckeditor',
     'content',
     'schools',
     'voting',
@@ -214,10 +213,6 @@ SOUTH_TESTS_MIGRATE = False
 FEED_URLS = {
     'splash': 'http://blogs.p2pu.org/feed/',
 }
-
-# Ckeditor
-CKEDITOR_MEDIA_PREFIX = "/media/ckeditor/"
-CKEDITOR_UPLOAD_PATH = path("uploads")
 
 # Where the default image for sending to Gravatar
 DEFAULT_PROFILE_IMAGE = 'http://new.p2pu.org/media/images/member-missing.png'

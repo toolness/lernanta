@@ -1,57 +1,7 @@
 import bleach
 
 
-DEFAULT_CONFIG = {
-    'skin': 'v2',
-    'toolbar': 'Full',
-    'height': 291,
-    'width': 618,
-    'filebrowserWindowWidth': 940,
-    'filebrowserWindowHeight': 747,
-}
-
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': [
-            ['Source', '-', 'Bold', 'Italic', '-', 'Link', 'Unlink'],
-        ],
-        'skin': 'kama',
-        'width': '420',
-        'height': '110',
-        'removePlugins': 'resize, elementspath',
-        'toolbarCanCollapse': False,
-        'extraPlugins': 'youtube,slideshare,prettify',
-        'format_tags': 'p;h1;h2;h3;h4;h5;h6',
-        'prettify': {
-            'element': 'pre',
-            'attributes': {'class': 'prettyprint'}},
-    },
-    'rich': {
-        'toolbar': [
-            ['Source'],
-            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript',
-                'Superscript'],
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['NumberedList', 'BulletedList', 'HorizontalRule', 'Outdent',
-                'Indent', 'SyntaxHighlighting', 'Blockquote'],
-            ['Maximize'],
-            ['Link', 'Unlink', 'Image', 'YouTube', 'SlideShare',
-                'Smiley', 'SpecialChar', 'Table'],
-            ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor'],
-        ],
-        'skin': 'kama',
-        'width': '568',
-        'height': '255',
-        'removePlugins': 'resize, elementspath',
-        'toolbarCanCollapse': False,
-        'extraPlugins': 'youtube,slideshare,prettify',
-        'format_tags': 'p;h1;h2;h3;h4;h5;h6',
-        'prettify': {'element': 'pre', 'attributes': {'class': 'prettyprint'}},
-    },
-}
-
-# Constants for cleaning ckeditor html.
+# Constants for cleaning richtext html.
 
 REDUCED_ALLOWED_TAGS = ('a', 'b', 'em', 'i', 'strong', 'p', 'u', 'strike',
     'sub', 'sup', 'br')
