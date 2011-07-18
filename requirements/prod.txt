@@ -13,6 +13,7 @@ markdown==2.0.3
 bleach==1.0.1
 lxml==2.3
 django-maintenancemode==0.9.2
+pyenchant==1.6.5
 
 -e git://github.com/jbalogh/django-cache-machine.git#egg=python_xrd-dev
 -e git://github.com/jsocol/commonware.git#egg=commonware
@@ -22,3 +23,4 @@ django-maintenancemode==0.9.2
 -e git://github.com/paulosman/django-push.git#egg=django_push
 -e git://github.com/paulosman/django-openid-auth.git#egg=django_openid_auth
 -e git://github.com/jdunck/python-unicodecsv.git#egg=unicodecsv
+-e git://github.com/aljosa/django-tinymce.git#egg=django_tinymce

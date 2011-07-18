@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'search',
     'chat',
     'l10n',
+    'tinymce',
     'dashboard',
     'relationships',
     'activity',
@@ -221,6 +222,12 @@ DEFAULT_PROFILE_IMAGE = 'http://new.p2pu.org/media/images/member-missing.png'
 # of the patterns in the URLconf and it doesn't end in a slash,
 # an HTTP redirect is issued to the same URL with a slash appended.
 APPEND_SLASH = True
+
+# TinyMCE
+TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "js/libs/tiny_mce/tiny_mce.js")
+TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "js/libs/tiny_mce")
+from richtext import TINYMCE_DEFAULT_CONFIG
+TINYMCE_SPELLCHECKER = True
 
 # Django logging configuration.
 # The default logging configuration. This sends an email to

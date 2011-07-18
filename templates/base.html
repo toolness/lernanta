@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="{{ MEDIA_URL }}{{ _('css/style-en.css') }}?v=1">
   <link rel="stylesheet" href="{{ MEDIA_URL }}js/libs/prettify/prettify.css">
   <script src="{{ MEDIA_URL }}js/libs/modernizr-1.6.min.js"></script>
+  <script src="{{ MEDIA_URL }}js/libs/tiny_mce/tiny_mce_src.js"></script>
+  <script src="{% locale_url tinymce-filebrowser %}"></script>
   {% block links %}{% endblock %}
 </head>
 <body id="{% block bodyid %}body{% endblock %}" class="{% block bodyclasses %}.body{% endblock %}">
@@ -139,7 +141,6 @@
   <script src="{{ MEDIA_URL }}js/libs/jquery-1.4.2.min.js"></script>
   <script src="{{ MEDIA_URL }}js/libs/jquery-ui-1.8.7.custom.min.js"></script>  
   <script src="{{ MEDIA_URL }}js/libs/jquery.tmpl.min.js"></script>
-  <script src="{{ MEDIA_URL }}js/libs/jquery.wmd.js"></script>
   <script src="{{ MEDIA_URL }}js/libs/jquery.ajaxupload.js"></script>
   <script src="{{ MEDIA_URL }}js/libs/prettify/prettify.js"></script>
 

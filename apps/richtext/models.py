@@ -11,8 +11,8 @@ class RichTextField(models.TextField):
         super(RichTextField, self).__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
-        return super(RichTextField, self).formfield(
-            form_class=RichTextFormField, **kwargs)
+        return super(RichTextField, self).formfield(form_class=RichTextFormField,
+            config_name=self.config_name, **kwargs)
 
     def pre_save(self, model_instance, add):
         value = super(RichTextField, self).pre_save(model_instance, add)
