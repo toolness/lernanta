@@ -69,7 +69,9 @@ MEDIA_URL = '/media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/admin-media/'
+ADMIN_MEDIA_PREFIX = MEDIA_URL + 'grappelli/'
+
+GRAPPELLI_ADMIN_TITLE = 'P2PU Administration'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'std3j$ropgs216z1aa#8+p3a2w2q06mns_%2vfx_#$$i!+6o+x'
@@ -117,6 +119,9 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'grappelli',
+    'tinymce',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.comments',
     'django.contrib.redirects',
@@ -126,7 +131,6 @@ INSTALLED_APPS = (
     'search',
     'chat',
     'l10n',
-    'tinymce',
     'dashboard',
     'relationships',
     'activity',
@@ -223,9 +227,12 @@ DEFAULT_PROFILE_IMAGE = 'http://new.p2pu.org/media/images/member-missing.png'
 # an HTTP redirect is issued to the same URL with a slash appended.
 APPEND_SLASH = True
 
+# File Browser
+FILEBROWSER_URL_FILEBROWSER_MEDIA = 'js/libs/filebrowser'
+
 # TinyMCE
-TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, "js/libs/tiny_mce/tiny_mce.js")
-TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "js/libs/tiny_mce")
+TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, 'js/libs/tiny_mce/tiny_mce.js')
+JS_ROOT = TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, 'js/libs/tiny_mce')
 from richtext import TINYMCE_DEFAULT_CONFIG
 TINYMCE_SPELLCHECKER = True
 
