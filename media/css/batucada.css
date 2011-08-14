@@ -599,8 +599,8 @@ header {}
   }
 
     #project_landing #breadcrumbs, #page #breadcrumbs, #edit_page #breadcrumbs, #comment #breadcrumbs, #delete_page #breadcrumbs, 
-    #delete_restore_comment #breadcrumbs, #project_edit #breadcrumbs, #create_page #breadcrumbs, #sign_up_task #breadcrumbs,
-    #sign_up_comment #breadcrumbs, #project_user_list #breadcrumbs {
+    #delete_restore_comment #breadcrumbs, #project_edit #breadcrumbs, #create_page #breadcrumbs, #signup #breadcrumbs, 
+    #project_user_list #breadcrumbs {
         height: 6em;    
     }
     
@@ -737,11 +737,6 @@ header {}
 	background-color:red;
 	color:white;
 }
-
-#people .pending {
-    background-color:red;
-    color:white;
-} 
         
       #project-summary,
       #sidebar #project-description { 
@@ -1119,7 +1114,7 @@ header {}
   margin-left: 0;
 }
 
-    #main .post-container, .modal .post-container {
+    .post-container {
       -pie-background: linear-gradient(top,#fff,#f4f4f4);
       border-radius: 6px;
       -moz-border-radius: 6px;
@@ -1144,6 +1139,20 @@ header {}
      color: #a00;
      padding-left: 20px;
    }
+
+    .post-container.post-replies, #extra-indent-post-replies .post-container {
+	    margin-left: 30px;
+	    width: 575px;
+	}
+
+    .modal .post-container.post-replies {
+       margin-left: 30px;
+	   width: 530px;
+    }
+
+    #extra-indent-post-replies .post-container.post-replies {
+       margin-left: 60px;
+    }
 
     .tags li,
     #main .post-tags li, #main .post-char-count {
@@ -1300,15 +1309,6 @@ header {}
 	#page #main .action {
 	    float: right;
 	}
-	#page #main .post-replies {
-	    margin-left: 30px;
-	    width: 575px;
-	}
-
-    #comment .post-replies, #sign_up_comment .post-replies, #activity .post-replies {
-       margin-left: 30px;
-	   width: 530px;
-    }
 
     #posts .post-comments {
        float: right;
@@ -1422,9 +1422,10 @@ header {}
 			border-radius:5px;
 			-moz-border-radius:5px;
 			padding-bottom: 40px;
-		}
+      min-height: 280px;
+    }
         .school .modal article {
-            min-height: 300px;
+            min-height: 360px;
         }
 		.modal.nav article {
 			background: #fff url(/media/images/panel-bg.png) 0 0 repeat-y;
@@ -1515,6 +1516,7 @@ header {}
 			line-height: 25px;
 			margin-bottom: 5px;
 		}
+		
 		.modal fieldset{
 			padding: 0 10px;
 			width: 516px;
@@ -1524,6 +1526,10 @@ header {}
 			width: 500px;
 		}
 
+        #school_edit_statistics ul {
+            padding-bottom: 1em;
+        }
+        
         .modal .school #headers_colorpicker, .modal .school #headers_light_colorpicker,
         .modal .school #background_colorpicker, .modal .school #menu_colorpicker,
         .modal .school #menu_light_colorpicker, .modal .school #about_us_footnote_colorpicker,

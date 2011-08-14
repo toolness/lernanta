@@ -23,6 +23,9 @@ urlpatterns = patterns('',
     (r'^pages/',         include('pages.urls')),
     (r'^search/',        include('search.urls')),
     (r'^chat/',          include('chat.urls')),
+    (r'^comments/',      include('replies.urls')),
+    (r'^badges/',        include('badges.urls')),
+    (r'^tags/',          include('tags.urls')),
     (r'',                include('users.urls')),
 )
 

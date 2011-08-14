@@ -26,3 +26,4 @@ django-filebrowser==3.2
 -e git://github.com/paulosman/django-openid-auth.git#egg=django_openid_auth
 -e git://github.com/jdunck/python-unicodecsv.git#egg=unicodecsv
 -e git://github.com/aljosa/django-tinymce.git#egg=django_tinymce
+-e git://github.com/zuzelvp/django-obi.git#egg=django_obi

@@ -13,6 +13,8 @@ from django.contrib.sites.models import Site
 from django.core.mail import send_mail
 from django.contrib.contenttypes.models import ContentType
 
+from taggit.managers import TaggableManager
+
 from drumbeat import storage
 from drumbeat.utils import get_partition_id, safe_filename
 from drumbeat.models import ModelBase
@@ -22,6 +24,9 @@ from activity.schema import object_types, verbs
 from users.tasks import SendUserEmail
 from l10n.models import localize_email
 from richtext.models import RichTextField
+from content.models import Page
+from replies.models import PageComment
+from tags.models import GeneralTaggedItem
 
 import caching.base
 
@@ -97,6 +102,9 @@ class Project(ModelBase):
     )
     category = models.CharField(max_length=30, choices=CATEGORY_CHOICES,
         default=STUDY_GROUP, null=True, blank=False)
+
+    tags = TaggableManager(through=GeneralTaggedItem, blank=True)
+
     other = models.CharField(max_length=30, blank=True, null=True)
     other_description = models.CharField(max_length=150, blank=True, null=True)
 
@@ -111,8 +119,6 @@ class Project(ModelBase):
 
     detailed_description = models.ForeignKey('content.Page',
         related_name='desc_project', null=True, blank=True)
-    sign_up = models.ForeignKey('content.Page', related_name='sign_up_project',
-        null=True, blank=True)
 
     image = models.ImageField(upload_to=determine_image_upload_path, null=True,
                               storage=storage.ImageStorage(), blank=True)
@@ -124,7 +130,6 @@ class Project(ModelBase):
 
     under_development = models.BooleanField(default=True)
     not_listed = models.BooleanField(default=False)
-    signup_closed = models.BooleanField(default=True)
     archived = models.BooleanField(default=False)
 
     clone_of = models.ForeignKey('projects.Project', blank=True, null=True,
@@ -171,17 +176,6 @@ class Project(ModelBase):
         return Participation.objects.filter(project=self,
             left_on__isnull=True, user__deleted=False)
 
-    def pending_applicants(self):
-        page = self.sign_up
-        users = []
-        first_level_comments = page.comments.filter(reply_to__isnull=True)
-        for answer in first_level_comments.filter(deleted=False):
-            is_participant = self.participants().filter(
-                user=answer.author).exists()
-            if not is_participant and not answer.author.deleted:
-                users.append(answer.author)
-        return users
-
     def non_organizer_participants(self):
         return self.participants().filter(organizing=False)
 
@@ -214,12 +208,6 @@ class Project(ModelBase):
             return is_organizer_or_participant or is_superuser
         else:
             return False
-
-    def is_pending_signup(self, user):
-        for applicant in self.pending_applicants():
-            if applicant == user:
-                return True
-        return False
 
     def activities(self):
         return Activity.objects.filter(deleted=False,
@@ -279,7 +267,6 @@ class Project(ModelBase):
 
     @staticmethod
     def filter_activities(activities):
-        from content.models import Page, PageComment
         from statuses.models import Status
         content_types = [
             ContentType.objects.get_for_model(Page),
@@ -289,7 +276,15 @@ class Project(ModelBase):
         ]
         return activities.filter(target_content_type__in=content_types)
 
+    @staticmethod
+    def filter_learning_activities(activities):
+        pages_ct = ContentType.objects.get_for_model(Page)
+        comments_ct = ContentType.objects.get_for_model(PageComment)
+        return activities.filter(
+            target_content_type__in=[pages_ct, comments_ct])
+
 register_filter('default', Project.filter_activities)
+register_filter('learning', Project.filter_learning_activities)
 
 
 class Participation(ModelBase):

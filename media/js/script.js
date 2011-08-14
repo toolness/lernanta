@@ -253,7 +253,7 @@ var batucada = {
             }
         }
     },
-    sign_up_task: {
+    signup: {
         onload: function() {
             var $inputs = $('input[type=file]');
             if ($inputs) {
