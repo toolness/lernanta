@@ -66,13 +66,6 @@ MEDIA_ROOT = path('media')
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = MEDIA_URL + 'grappelli/'
-
-GRAPPELLI_ADMIN_TITLE = 'P2PU Administration'
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'std3j$ropgs216z1aa#8+p3a2w2q06mns_%2vfx_#$$i!+6o+x'
 
@@ -121,9 +114,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'grappelli',
     'tinymce',
-    'filebrowser',
     'django.contrib.admin',
     'django.contrib.redirects',
     'south',
@@ -234,9 +225,6 @@ DEFAULT_PROFILE_IMAGE = 'http://new.p2pu.org/media/images/member-missing.png'
 # of the patterns in the URLconf and it doesn't end in a slash,
 # an HTTP redirect is issued to the same URL with a slash appended.
 APPEND_SLASH = True
-
-# File Browser
-FILEBROWSER_URL_FILEBROWSER_MEDIA = 'js/libs/filebrowser'
 
 # TinyMCE
 TINYMCE_JS_URL = os.path.join(MEDIA_ROOT, 'js/libs/tiny_mce/tiny_mce.js')
