@@ -92,6 +92,6 @@ Next, sync the database and run migrations. ::
 
 Finally, start the development server to take it for a spin. You can register a new account and look in the terminal window where the server is running to find the activation link (If you get 404 error for that url, remove the "=": http://www.flickr.com/photos/digifoo/5593967846/). ::
 
-   python manage.py runserver 
+   python manage.py runserver --adminmedia=media/grappelli/ 
 
 Once you have your development environment running, you can make changes or get the latest from github. See the wiki for more information: https://github.com/p2pu/lernanta/wiki
