@@ -19,26 +19,48 @@
 
   <div id="task_header">
   <h2><span>{{ _('Tasks') }}</span></h2>
-    
-  {% if content_pages %}
 
-  <ul>
+  {% if content_pages %}
+  <form action="{% block page_form_url %}{% endblock %}" method="post">
+  <ul id="task_list">
     {% for page in content_pages %}
-    <li class="{% cycle 'odd' 'even' %}">
+    <li id="item-{{ page.index }}" class="ui-state-default {% cycle 'odd' 'even' %}">
         <span class="taskNumber">{{forloop.counter}}</span> <a class="taskLink" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
         <span class="action-buttons"><a href="{{ page.get_absolute_url }}">{{ _('View') }}</a></span>
     </li>
         {% endfor %}
       </ul>
 
+  <input type="submit" value="Save"/>
+  </form>
   {% else %}
    {{ _('No tasks have been added.') }}
     
   {% endif %}
-  
-  </div>
 
+  </div>
+{% if can_add_task %}
+    <br>
+    <a class="button" href="{% locale_url page_create slug=project.slug %}">{{ _('New Task') }}</a>
+  {% endif %}
 </div> <!-- /#main -->
+
+  {% block js %}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $( "ul#task_list" ).sortable({
+            /* TODO: make update actually do something */
+            update: function() {
+              var order = $('#task_list').sortable('serialize');
+              alert(order);
+              $.post('TODOajaxhandler', {
+                  'order': order
+              });
+            }
+        });
+    });
+    </script>
+  {% endblock %}
 
 {% endblock %}
 
