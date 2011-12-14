@@ -6,6 +6,7 @@ from django import template
 from django.conf import settings
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext as _
 
 from embedly import Embedly
 
@@ -15,15 +16,19 @@ from richtext.models import EmbeddedUrl
 register = template.Library()
 
 
-EMBED_RE = (r"\[(?:slideshare|youtube|embed):(?P<url>[^\]]+)]")
+EMBED_RE = (r"\[(?P<kind>slideshare|youtube|embed|externaltask):(?P<url>[^\]]+)]")
 DEFAULT_EMBED = '<a href="%s">%s</a>'
 url_validate = URLValidator(verify_exists=True)
-
 
 def replace(match):
     url = match.group('url')
     try:
         url_validate(url)
+        if match.group('kind') == 'externaltask':
+            return '<button class="external-task" data-url="%s">%s</button>' % (
+                url, # TODO: Should we escape/encode this somehow?
+                _('Start This Task')
+                )
         expiration_date = datetime.now() - settings.EMBEDLY_CACHE_EXPIRES
         embedded_urls = EmbeddedUrl.objects.filter(original_url=url,
             created_on__gte=expiration_date).order_by('-created_on')

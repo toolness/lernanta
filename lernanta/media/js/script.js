@@ -504,3 +504,23 @@ $(".right-aligned-rating").hover(
         $("div.rating-key").hide();
         $(this).find("div.rating-key").show();
 });
+
+// Don't let users embed external task links in comments.
+$(".task-discussion button.external-task").remove();
+
+$("button.external-task").click(function() {
+  var url = $(this).attr("data-url");
+  var opened = window.open(url);
+  
+  function onMessage(event) {
+    event = event.originalEvent;
+    // TODO: Ensure that event.origin is what we expect it to be, i.e.
+    // the same origin as 'url'.
+    if (event.source == opened && event.data == "task-complete") {
+      $(window).unbind('message', onMessage);
+      $("form.task-done-button").submit();
+    }
+  }
+  
+  $(window).bind('message', onMessage);
+});
